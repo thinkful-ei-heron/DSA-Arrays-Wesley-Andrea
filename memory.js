@@ -17,7 +17,7 @@ class Memory {
         this.head += size;
         return start;
     }
-    //frees block of memory reserved using allocate
+    // frees block of memory reserved using allocate
     free(ptr) { }
 
     //copies size boxes of data from the from pointer to the to pointer
@@ -38,7 +38,7 @@ class Memory {
             }
         }
     }
-    //returns value stored at certain memory address 
+    // returns value stored at certain memory address 
     //   ptr short for pointer
     get(ptr) {
         return this.memory[ptr];
