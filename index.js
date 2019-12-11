@@ -146,11 +146,11 @@ function product(arr) {
 // O(n^2 * 2) Polynomial complexity.
 
 let arrInput = [
-    [1,0,1,1,0],
-    [0,1,1,1,0],
-    [1,1,1,1,1],
-    [1,0,1,1,1],
-    [1,1,1,1,1]
+    [1, 0, 1, 1, 0],
+    [0, 1, 1, 1, 0],
+    [1, 1, 1, 1, 1],
+    [1, 0, 1, 1, 1],
+    [1, 1, 1, 1, 1]
 ];
 
 // Expected Output
@@ -163,42 +163,65 @@ let arrInput = [
 //];
 
 
-function zeroOut(arr){
+function zeroOut(arr) {
     // Create storage for results of overall, row, and column.
-    let results= [];
+    let results = [];
     let rowResult = [];
     let columnResult = [];
 
     // Iterate over the entire 2D array.
-    for(let i = 0; i < arr.length; i++){
+    for (let i = 0; i < arr.length; i++) {
         // iterate over each array individually
-        for(let j=0; j < arr[0].length; j++){
+        for (let j = 0; j < arr[0].length; j++) {
             // if the individual array at position [i] with element at position [j] is equal to 0. then set the corresponding result array to true. 
-            if(arr[i][j] === 0){
+            if (arr[i][j] === 0) {
                 rowResult[i] = true;
                 columnResult[j] = true;
-            } 
+            }
         }
-        
+
     }
     // iterate over the overall array. 
-    for(let i = 0; i < arr.length; i++){
+    for (let i = 0; i < arr.length; i++) {
         // if the results array is empty fill with empty arrays matching the length of the input array.
-        if(!results[i]){
-            results[i]=[];
+        if (!results[i]) {
+            results[i] = [];
         }
         // if the either the row result or column result was set to true  then set the corresponding overall result position to 0.
-        for(let j=0; j< arr[0].length; j++){
-            if(rowResult[i] || columnResult[j]){
+        for (let j = 0; j < arr[0].length; j++) {
+            if (rowResult[i] || columnResult[j]) {
                 results[i][j] = 0;
             }
-            else{
-                results[i][j]=1;
+            else {
+                results[i][j] = 1;
             }
         }
-   
+
     }
     return results;
 }
 
 //console.log(zeroOut(arrInput));
+
+//String rotation
+// Input: amazon, azonam
+// Output: true
+
+function stringRotation(str1, str2) {
+    let match = false;
+
+    for (let i = 0; i < str1.length; i++) {
+        let testStr = (str1[i] + str1.slice(i + 1) + str1.slice(0, i))
+
+        if (testStr === str2) {
+            match = true;
+        }
+    }
+    return match;
+}
+console.log(stringRotation('amazon', 'azonam'));
+console.log(stringRotation('amazon', 'azonma'));
+console.log(stringRotation('buffalo', 'falobuf'));
+
+
+
