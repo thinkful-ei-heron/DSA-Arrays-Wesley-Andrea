@@ -51,7 +51,7 @@ function urlify(str) {
     let res = str.replace(' ', '%20');
     return res;
 }
-console.log(urlify('test code'));
+//console.log(urlify('test code'));
 const testArr = [4, 6, -3, 5, -2, 1];
 
 // This Complexity is O(n) but could be O(log(n)) if we split the arr. 
@@ -83,7 +83,7 @@ function maxSum(arr) {
     return maxSum;
 }
 
-console.log(maxSum(testArr));
+//console.log(maxSum(testArr));
 
 //Merge arrays
 //Linear time O(n) output directly proportional to input
@@ -97,7 +97,7 @@ function mergeArrays(arr1, arr2) {
 
     return result;
 }
-console.log(mergeArrays(arr1, arr2));
+//console.log(mergeArrays(arr1, arr2));
 
 // Remove characters
 // Input:'Battle of the Vowels: Hawaii vs. Grozny', 'aeiou'
@@ -118,4 +118,87 @@ function removeChar(str, char) {
     }
     return result;
 }
-console.log(removeChar('Battle of the Vowels: Hawaii vs. Grozny', 'aeiou'));
+//console.log(removeChar('Battle of the Vowels: Hawaii vs. Grozny', 'aeiou'));
+
+
+// Products Drill
+// Complexity Polynomial.
+
+let input = [1, 3, 9, 4];
+// Output:[108, 36, 12, 27]
+
+function product(arr) {
+    let total = [];
+    for (let i = 0; i < arr.length; i++) {
+        let product = 1;
+        for (let j = 0; j < arr.length; j++) {
+            if (i !== j) {
+                product *= arr[j];
+            }
+        }
+        total.push(product);
+    }
+    return total;
+}
+//console.log(product(input));
+
+// 2D Array Drill
+// O(n^2 * 2) Polynomial complexity.
+
+let arrInput = [
+    [1,0,1,1,0],
+    [0,1,1,1,0],
+    [1,1,1,1,1],
+    [1,0,1,1,1],
+    [1,1,1,1,1]
+];
+
+// Expected Output
+// [
+// [0,0,0,0,0],
+// [0,0,0,0,0],
+// [0,0,1,1,0],
+// [0,0,0,0,0],
+// [0,0,1,1,0]
+//];
+
+
+function zeroOut(arr){
+    // Create storage for results of overall, row, and column.
+    let results= [];
+    let rowResult = [];
+    let columnResult = [];
+
+    // Iterate over the entire 2D array.
+    for(let i = 0; i < arr.length; i++){
+        // iterate over each array individually
+        for(let j=0; j < arr[0].length; j++){
+            // if the individual array at position [i] with element at position [j] is equal to 0. then set the corresponding result array to true. 
+            if(arr[i][j] === 0){
+                rowResult[i] = true;
+                columnResult[j] = true;
+            } 
+        }
+        
+    }
+    // iterate over the overall array. 
+    for(let i = 0; i < arr.length; i++){
+        // if the results array is empty fill with empty arrays matching the length of the input array.
+        if(!results[i]){
+            results[i]=[];
+        }
+        // if the either the row result or column result was set to true  then set the corresponding overall result position to 0.
+        for(let j=0; j< arr[0].length; j++){
+            if(rowResult[i] || columnResult[j]){
+                results[i][j] = 0;
+            }
+            else{
+                results[i][j]=1;
+            }
+        }
+   
+    }
+    return results;
+}
+
+//console.log(zeroOut(arrInput));
