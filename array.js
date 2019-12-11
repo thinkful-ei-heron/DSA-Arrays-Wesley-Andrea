@@ -30,6 +30,45 @@ class drillArray {
         this._capacity = size;
     }
 
+    // Gathers the values from the provided index
+    get(index){
+        if(index < 0 || index >= this.length){
+            throw new Error('Index error');
+        }
+        return Memory.get(this.ptr + index);
+    }
+
+    // Removes the value at the end of the array.
+    pop(){
+        if(this.length === 0){
+            throw new Error ('Index error');
+        }
+        const value = Memory.get(this.ptr + this.length -1);
+        this.length--;
+        return value;
+    }
+    // Insert a value into an array
+    insert(index, value){
+        if(index < 0 || index >= this.length){
+            throw new Error('Index error');
+        }
+        if(this.length >= this._capacity){
+            this._resize((this.length +1)* drillArray.SIZE_RATIO);
+        }
+        Memory.copy(this.ptr + index + 1, this.ptr + index, this.length - index);
+        Memory.set(this.ptr + index, value);
+        this.length++;
+    }
+    // Removes a value from a specific point in an array. 
+    // Copies the values backwards from where you removed.
+    remove(index){
+        if(index < 0 || index >= this.length){
+            throw new Error('Index error');
+        }
+        Memory.copy(this.ptr + index, this.ptr + index + 1, this.length - index -1);
+        this.length--;
+    }
+
 }
 // If over capacity this will triple size of memory
 drillArray.SIZE_RATIO = 3;
