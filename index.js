@@ -51,4 +51,36 @@ function urlify(str) {
     let res = str.replace(' ', '%20')
     return res;
 }
-console.log(urlify('test code'));
+//console.log(urlify('test code'));
+const testArr = [4, 6, -3, 5, -2, 1];
+
+// This Complexity is O(n) but could be O(log(n)) if we split the arr. 
+function filterTheArray(arr){
+    let results = [];
+    for(let i = 0; i< arr.length; i++){
+        if(arr[i] >= 5){
+            results.push(arr[i]);
+        }
+    }
+    return results;
+}
+//console.log(filterTheArray(testArr));
+
+// Complexity is O(n^2), Polynomial.
+function maxSum(arr){
+    let maxSum = 0;
+    for(let i=0; i< arr.length; i++){
+        let sum = 0;
+        for(let j=i; j<arr.length; j++){
+            sum += arr[j];
+            if(maxSum < sum){
+                maxSum = sum;
+            } else {
+                sum;
+            }
+        }
+    }
+    return maxSum;
+}
+
+console.log(maxSum(testArr));
