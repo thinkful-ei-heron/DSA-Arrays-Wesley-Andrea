@@ -27,7 +27,7 @@ function main() {
     arr.push('tauhida');
     console.log(arr.get(1));
     //NaN being returned
-    //float value looking for decimal and we are passing in a string
+    //float value looking for decimal and we are passing in a
 
     //resize
     //if arr.length >= capacity resize will increase capacity 
