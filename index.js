@@ -48,17 +48,17 @@ main();
 //replace spaces with %20
 
 function urlify(str) {
-    let res = str.replace(' ', '%20')
+    let res = str.replace(' ', '%20');
     return res;
 }
-//console.log(urlify('test code'));
+console.log(urlify('test code'));
 const testArr = [4, 6, -3, 5, -2, 1];
 
 // This Complexity is O(n) but could be O(log(n)) if we split the arr. 
-function filterTheArray(arr){
+function filterTheArray(arr) {
     let results = [];
-    for(let i = 0; i< arr.length; i++){
-        if(arr[i] >= 5){
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] >= 5) {
             results.push(arr[i]);
         }
     }
@@ -67,13 +67,13 @@ function filterTheArray(arr){
 //console.log(filterTheArray(testArr));
 
 // Complexity is O(n^2), Polynomial.
-function maxSum(arr){
+function maxSum(arr) {
     let maxSum = 0;
-    for(let i=0; i< arr.length; i++){
+    for (let i = 0; i < arr.length; i++) {
         let sum = 0;
-        for(let j=i; j<arr.length; j++){
+        for (let j = i; j < arr.length; j++) {
             sum += arr[j];
-            if(maxSum < sum){
+            if (maxSum < sum) {
                 maxSum = sum;
             } else {
                 sum;
@@ -84,3 +84,38 @@ function maxSum(arr){
 }
 
 console.log(maxSum(testArr));
+
+//Merge arrays
+//Linear time O(n) output directly proportional to input
+let arr1 = [1, 3, 6, 8, 11];
+let arr2 = [2, 3, 5, 8, 9, 10];
+
+function mergeArrays(arr1, arr2) {
+    let result = arr1.concat(arr2);
+
+    result.sort(function (a, b) { return a - b; });
+
+    return result;
+}
+console.log(mergeArrays(arr1, arr2));
+
+// Remove characters
+// Input:'Battle of the Vowels: Hawaii vs. Grozny', 'aeiou'
+// Output: 'Bttl f th Vwls: Hw vs.
+
+function removeChar(str, char) {
+    let result = '';
+    for (let i = 0; i < str.length; i++) {
+        let hasChar = true;
+        for (let j = 0; j < char.length; j++) {
+            if (str[i] === char[j]) {
+                hasChar = false;
+            }
+        }
+        if (hasChar) {
+            result += str[i];
+        }
+    }
+    return result;
+}
+console.log(removeChar('Battle of the Vowels: Hawaii vs. Grozny', 'aeiou'));
